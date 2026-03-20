@@ -1,0 +1,42 @@
+{
+  "name": "openclaw-deep-observability-tools",
+  "version": "1.0.0",
+  "description": "CLI for managing OpenClaw Deep Observability Plugin",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "openclaw-deep-observability-tools": "./dist/index.js"
+  },
+  "scripts": {
+    "clean": "shx rm -rf dist",
+    "build": "npm run clean && tsc",
+    "release": "node scripts/publish.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "observability",
+    "opentelemetry"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^25.3.3",
+    "shx": "^0.4.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^14.0.3",
+    "fs-extra": "^11.3.3",
+    "inquirer": "^8.2.7",
+    "ora": "^5.4.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
