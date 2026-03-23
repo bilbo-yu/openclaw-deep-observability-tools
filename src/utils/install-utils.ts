@@ -14,6 +14,9 @@ export interface InstallOptions {
   nonInteractive?: boolean;
   skipVersionCheck?: boolean;
   debug?: boolean;
+  app?: string;
+  appid?: string;
+  service?: string;
 }
 
 export function compareVersions(v1: string, v2: string): number {

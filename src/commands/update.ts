@@ -60,7 +60,7 @@ export async function updateCommand(options: InstallOptions = {}): Promise<void>
   spinner.start('Configuring plugin...');
   try {
     const config = await readConfig();
-    await ensurePluginConfig(config, endpoint, protocol, captureContent);
+    await ensurePluginConfig(config, endpoint, protocol, captureContent, options.app, options.appid, options.service);
     await writeConfig(config);
     spinner.succeed(chalk.green('Plugin configured successfully.'));
   } catch (error) {

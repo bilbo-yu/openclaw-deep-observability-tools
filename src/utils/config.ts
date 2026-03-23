@@ -90,18 +90,25 @@ export function getExistingPluginConfig(config: OpenClawConfig): { endpoint: str
   return undefined;
 }
 
-export function createPluginConfig(endpoint: string, protocol: Protocol, captureContent: boolean = DEFAULT_CONFIG.captureContent): PluginConfig {
+export function createPluginConfig(
+  endpoint: string,
+  protocol: Protocol,
+  captureContent: boolean = DEFAULT_CONFIG.captureContent,
+  appName?: string,
+  appId?: string,
+  serviceName?: string
+): PluginConfig {
   const hostname = os.hostname();
   const hostIp = getHostIp();
-  const serviceName = DEFAULT_CONFIG.serviceName;
-  const applicationName = `openclaw-${hostname}`;
-  const applicationId = md5(applicationName);
-  const serviceId = md5(`${applicationName}|${serviceName}`);
+  const finalServiceName = serviceName || DEFAULT_CONFIG.serviceName;
+  const applicationName = appName || `openclaw-${hostname}`;
+  const applicationId = appId || md5(applicationName);
+  const serviceId = md5(`${applicationName}|${finalServiceName}`);
 
   return {
     endpoint,
     protocol,
-    serviceName,
+    serviceName: finalServiceName,
     captureContent,
     resourceAttributes: {
       'application.name': applicationName,
@@ -116,7 +123,10 @@ export async function ensurePluginConfig(
   config: OpenClawConfig,
   endpoint: string = DEFAULT_CONFIG.endpoint,
   protocol: Protocol = DEFAULT_CONFIG.protocol,
-  captureContent: boolean = DEFAULT_CONFIG.captureContent
+  captureContent: boolean = DEFAULT_CONFIG.captureContent,
+  appName?: string,
+  appId?: string,
+  serviceName?: string
 ): Promise<void> {
   // Ensure diagnostics is enabled
   if (!config.diagnostics) {
@@ -145,6 +155,6 @@ export async function ensurePluginConfig(
   // Set plugin entry with config
   config.plugins.entries[PLUGIN_ID] = {
     enabled: true,
-    config: createPluginConfig(endpoint, protocol, captureContent),
+    config: createPluginConfig(endpoint, protocol, captureContent, appName, appId, serviceName),
   };
 }

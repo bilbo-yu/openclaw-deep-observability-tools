@@ -24,6 +24,9 @@ program
   .option('--non-interactive', 'Skip interactive prompts and use defaults')
   .option('--skip-version-check', 'Skip OpenClaw version validation')
   .option('--debug', 'Enable debug logging')
+  .option('--app <name>', 'Application name (default: openclaw-{hostname})')
+  .option('--appid <id>', 'Application ID (default: auto-generated from app name)')
+  .option('--service <name>', 'Service name (default: openclaw-gateway)')
   .action((options) => {
     installCommand({
       version: options.version,
@@ -32,6 +35,9 @@ program
       nonInteractive: options.nonInteractive,
       skipVersionCheck: options.skipVersionCheck,
       debug: options.debug,
+      app: options.app,
+      appid: options.appid,
+      service: options.service,
     });
   });
 
@@ -48,6 +54,9 @@ program
   .option('--non-interactive', 'Skip interactive prompts and use defaults')
   .option('--skip-version-check', 'Skip OpenClaw version validation')
   .option('--debug', 'Enable debug logging')
+  .option('--app <name>', 'Application name (default: openclaw-{hostname})')
+  .option('--appid <id>', 'Application ID (default: auto-generated from app name)')
+  .option('--service <name>', 'Service name (default: openclaw-gateway)')
   .action(async (options) => {
     await updateCommand({
       version: options.version,
@@ -56,6 +65,9 @@ program
       nonInteractive: options.nonInteractive,
       skipVersionCheck: options.skipVersionCheck,
       debug: options.debug,
+      app: options.app,
+      appid: options.appid,
+      service: options.service,
     });
   });
 

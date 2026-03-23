@@ -55,6 +55,9 @@ openclaw-deep-observability-tools update [options]
 | `--version <version>` | Install or update to a specific version of the plugin | latest |
 | `--endpoint <url>` | OTLP endpoint URL for sending telemetry data | `http://localhost:4318` |
 | `--protocol <protocol>` | Protocol to use for telemetry export (`http/protobuf` or `grpc`) | `http/protobuf` |
+| `--app <name>` | Application name for resource attribute `application.name` | `openclaw-{hostname}` |
+| `--appid <id>` | Application ID for resource attribute `application.id` | auto-generated MD5 from app name |
+| `--service <name>` | Service name for configuration | `openclaw-gateway` |
 | `--capture-content` | Enable request/response content capture | `true` |
 | `--no-capture-content` | Disable request/response content capture | - |
 | `--non-interactive` | Skip interactive prompts and use default values | `false` |
@@ -115,6 +118,22 @@ openclaw-deep-observability-tools update
 
 ```bash
 openclaw-deep-observability-tools update --debug
+```
+
+### Install with Custom Application Identity
+
+```bash
+# Custom application name, ID, and service name
+openclaw-deep-observability-tools install \
+  --app my-custom-app \
+  --appid my-custom-app-id \
+  --service my-service
+
+# Only specify application name (ID auto-generated)
+openclaw-deep-observability-tools install --app my-app
+
+# Custom service name with default application settings
+openclaw-deep-observability-tools install --service my-gateway-service
 ```
 
 ## Configuration
