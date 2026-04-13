@@ -129,10 +129,10 @@ export function checkOpenClawVersion(skipVersionCheck: boolean = false): void {
     const versionMatch = output ? output.match(/(?:OpenClaw\s+)?(\d+\.\d+\.\d+)/) : null;
     const version = versionMatch ? versionMatch[1] : null;
 
-    if (version && compareVersions(version, '2026.2.26') < 0) {
+    if (version && compareVersions(version, '2026.3.24') < 0) {
       console.error(
         chalk.red(
-          `Error: OpenClaw version mismatch. Expected >= 2026.2.26, found ${version}. Please upgrade.`
+          `Error: OpenClaw version mismatch. Expected >= 2026.3.24, found ${version}. Please upgrade.`
         )
       );
       process.exit(1);

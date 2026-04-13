@@ -1,6 +1,6 @@
 {
   "name": "openclaw-deep-observability-tools",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "CLI for managing OpenClaw Deep Observability Plugin",
   "main": "dist/index.js",
   "files": [
